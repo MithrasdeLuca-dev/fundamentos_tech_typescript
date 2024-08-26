@@ -71,19 +71,6 @@ const cadastrar = (name: string): string => {
 
 
 
-//  -------------------------------- PARÂMETRO OPCIONAL -------------------------------- //
-/* 
- * Define uma função que aceita um parâmetro opcional.
- * Em js quando não mandamos um parâmetro ele se torna opcional.
- */
-const opticonalType = (userCad: {name:string, idade?:number}) => {
-    console.log(userCad.name);
-}
-
-
-
-
-
 //  -------------------------------- UNION TYPES -------------------------------- //
 /* 
  * Utiliza union types para aceitar múltiplos tipos de valores para um unico dado recebido.
@@ -119,13 +106,63 @@ const typeAlias = (value: Valor) => {
 
 
 
-//  -------------------------------- TYPEOF E INSTANCEOF -------------------------------- //
+//  -------------------------------- PARÂMETRO OPCIONAL -------------------------------- //
+/* 
+ * Define uma função que aceita um parâmetro opcional.
+ * Em js quando não mandamos um parâmetro ele se torna opcional.
+ */
+const opticonalType = (userCad: {name:string, idade?:number}) => {
+    console.log(userCad.name);
+}
+
+
 /*
+ * Aqui temos um parâmetro opcional validado por narrowring
+*/
+const optionalType = (userCad: { name: string; idade?: number }) => {
+    const { name, idade } = userCad;
+  
+    if (idade && typeof idade === "number") {
+      console.log(`Olá ${name}, você tem ${idade} anos de idade`);
+    } else {
+      console.log(`Olá ${name}!`);
+    }
+    console.log(userCad.name);
+  };
+  
+  // Uso da função optionalType
+  optionalType({ name: "João", idade: 30 });
+  optionalType({ name: "Maria" });
+  
+
+
+
+
+//  -------------------------------- NARROWING -------------------------------- //
+/**
+ * No TypeScript, narrowing é o processo de refinar.
+ * Um tipo mais amplo para um tipo mais específico com base em certas condições.
+ * Isso permite que o TypeScript entenda melhor o tipo de uma variável em diferentes partes do código.
+ * Aumentando a segurança e a precisão.
+ **/
+
+function exemplo(valor: number | string) {
+    if (typeof valor === "string") {
+      console.log(valor.toUpperCase()); // Narrowing para string
+    } else {
+      console.log(valor.toFixed(2)); // Narrowing para number
+    }
+  } 
+
+
+
+
+//  -------------------------------- TYPEOF E INSTANCEOF -------------------------------- //
+/** 
  * Utiliza "typeof" para verificar o tipo de uma variável muito comum em JavaScript. 
- * 
  * "instanceof" para verificar se um objeto é de uma determinada função construtora.
  * É útil para determinar a herança de objetos. 
-*/
+ **/
 
 // Uso simples do typeof com tipos primitivos.
 
@@ -173,3 +210,20 @@ const validateAccess = (user: User) => {
 
 validateAccess(user); // Acesso restrito.
 validateAccess(admin); // Acesso total concedido.
+
+
+
+
+
+//  -------------------------------- TUPLAS -------------------------------- //
+/**
+ * Tuplas em TypeScript são uma forma especial de array que permite armazenar elementos
+ * de diferentes tipos em uma ordem específica.
+ * 
+ * Ao contrário dos arrays comuns, onde todos os elementos são do mesmo tipo.
+ * As tuplas permitem definir um conjunto fixo de tipos para cada posição do array1.
+ */
+
+const tupla: [number, string, boolean] = [1, "texto", true];
+const arrayExpandido = [...tupla];
+console.log(arrayExpandido); // [1, "texto", true]

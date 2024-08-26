@@ -80,3 +80,36 @@ type CaixaComEscala = CaixaPequena & {
 }
 
 let caixaComEscala: CaixaComEscala = { altura: 5, largura: 6, escala: 10 };
+
+
+
+
+
+//  -------------------------------- INTERSECTION ou TYPES -------------------------------- //
+/**
+ * Intersection types em TypeScript permitem combinar múltiplos tipos.
+ * Um único tipo pode possuir todas as propriedades dos tipos combinados.
+ * Isso é útil para criar tipos mais complexos e reutilizáveis.
+ */
+
+interface Animal {
+  especie: string;
+  idade: number;
+}
+
+interface Dono {
+  nome: string;
+  endereco: string;
+}
+
+type Pet = Animal & Dono;
+
+const meuPet: Pet = {
+  especie: "Cachorro",
+  idade: 5,
+  nome: "Rex",
+  endereco: "Rua das Flores, 123"
+};
+
+console.log(meuPet);
+

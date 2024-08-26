@@ -36,6 +36,23 @@
 
 
 
+  //  -------------------------------- ARRAY GENERIC -------------------------------- //
+  /**
+   * Um exemplo de função que tem um tipo generico e que recebe dois argumentos tipo string.
+   * 
+   */
+  function unionGeneric<T>(arr1: T[], arr2: T[]){
+    return arr1.concat(arr2);
+  }
+  
+  // Uso da função getFirstElement
+  console.log(unionGeneric<number | string>([1,2,3],["a","b","c"])); // Union Generic
+  // console.log(unionGeneric([1,2,3],[1,2,3]));
+  
+
+
+
+
   //  -------------------------------- GENERIC INTERFACE -------------------------------- //
   /**
    * Definindo uma interface genérica para um par chave-valor.

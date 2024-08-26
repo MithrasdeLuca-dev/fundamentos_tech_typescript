@@ -1,0 +1,68 @@
+
+**1. Introdução ao TypeScript**
+
+   - **O que é o JavaScript**
+     - Evolução e uso no servidor com Node.js
+   - **O que é TypeScript?**
+     - Superset do JavaScript com tipagem estática
+   - **Por que usar TypeScript?**
+     - Melhoria da qualidade do código
+     - Facilidade de manutenção
+     - Detecção precoce de erros
+   - **Preciso instalar o TypeScript?**
+     - Instalação global/local
+     - Comandos para instalação e desinstalação
+
+**2. Configuração e Compilação**
+
+   - **Como compilar TypeScript?**
+     - Comandos básicos (`tsc`, `node`, `--watch`)
+   - **Compilação Automática em Projetos Next.js e Nest.js**
+     - Integração nativa do TypeScript
+
+**3. Ferramentas e Ambiente**
+
+   - **Node.js**
+     - Ambiente de execução no servidor
+   - **Por que o npx do Next.js e do Nest.js já trazem o TypeScript?**
+     - Integração e configuração automática
+   - **O que é o `tsconfig.json`?**
+     - Configuração do compilador e ambiente
+
+**4. Tipos Básicos e Arrays**
+
+   - **Tipos Primitivos com Letras Minúsculas**
+   - **Tipos de Objetos com Letras Maiúsculas**
+   - **Tipos de Retorno `Promise`**
+   - **Parâmetro Opcional**
+   - **Union Types**
+   - **Type, Type Alias e Union Type Alias**
+   - **`typeof` e `instanceof`**
+
+**5. Utility Types em TypeScript**
+
+   - **`keyof<Type>`**
+   - **`Partial<Type>`**
+   - **`Pick<Type, Keys>`**
+   - **`Omit<Type, Keys>`**
+   - **`ReturnType<Function>`**
+
+**6. Interfaces e Extensões**
+
+   - **Definição de Interfaces**
+   - **Extensão de Interfaces**
+   - **Merging Interfaces**
+   - **Interfaces ou Types?**
+
+**7. Generics em TypeScript**
+
+   - **Exemplo Básico de Generic**
+   - **Array Generic**
+   - **Generic Interface**
+   - **Generic Class**
+   - **Generic Constraints**
+
+**8. Conclusão**
+
+   - **Utility Types**
+   - **Generics**
