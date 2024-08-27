@@ -106,6 +106,40 @@ const typeAlias = (value: Valor) => {
 
 
 
+//  -------------------------------- ENUM -------------------------------- //
+/* 
+ * Enums, ou enumerações, são como uma lista de opções fixas que você define no seu código.
+ * Imagine que você tem que escolher entre várias cores, como "vermelho", "azul" e "verde".
+ * Com Enums, você cria um conjunto com essas opções, e depois, no código, só pode escolher uma dessas cores.
+ * Isso ajuda a evitar erros e torna o código mais fácil de entender. 
+ * É como criar uma caixinha de escolhas pré-definidas para usar no seu programa.
+ */
+enum PerfilAcesso {
+  Admin = 'Administrador',
+  Usuario = 'Usuário Padrão',
+  Convidado = 'Convidado'
+}
+
+const userConv = {
+  id:'KAJSLDJAL',
+  name:"Marcos",
+  idade: 30,
+  email: "marcos@example.com",
+  perfil: 'Convidado',
+}
+
+function validarUser( perfil: string ) {
+  if (perfil === PerfilAcesso.Convidado) {
+    console.log('Usuário é um convidado.');
+  } else {
+    console.log('Usuário não é um convidado.');
+  }
+}
+
+validarUser(userConv.perfil)
+
+
+
 //  -------------------------------- PARÂMETRO OPCIONAL -------------------------------- //
 /* 
  * Define uma função que aceita um parâmetro opcional.
