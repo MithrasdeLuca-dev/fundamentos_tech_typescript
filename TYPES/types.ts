@@ -10,8 +10,11 @@ let idade: number = 30; // Variável do tipo número
 let nome: string = "Carlos"; // Variável do tipo string
 let isEstudante: boolean = true; // Variável booleana
 let hobbies: string[] = ["Futebol", "Leitura"]; // Array de strings
-let objeto: { nome: string; idade: number } = { nome: "Carlos", idade: 30 }; // Objeto com propriedades tipadas
+let objeto: { nome: string; idade: number } = { nome: "Carlos", idade: 30, }; // Objeto com propriedades tipadas
 
+var newName = 'Jão'  // Inferência de tipo
+
+// newName = 10
 
 //Demonstra a declaração de arrays tipados em TypeScript.
 const dadosTipoNumberArray: number[] = [1, 2, 3]; // Array contendo apenas números
@@ -89,8 +92,40 @@ const unionType = (value: string | number) => {
 */
 
 // Definindo um tipo simples.
-type Peso = number;
-let meuPeso: Peso = 60;
+type NomeCarro = string;
+
+type Carro = {
+  nome:string;
+  ano:number;
+  cor: string;
+  marca: string;
+  funcionando:boolean;
+}
+
+// type CarroAlugado = Carro & {
+//   kmRodados:string;
+//   acidentado:boolean;
+//   multa: boolean;
+//   ativo:boolean;
+// }
+
+// const novoCarroAlugado: CarroAlugado = {
+//   nome: "Fusca",
+//   ano: 2010,
+//   cor: "Preto",
+//   marca: "Ford",
+//   funcionando: true,
+//   kmRodados: "5000 km",
+//   acidentado: false,
+//   multa: false,
+//   ativo: true,
+// } 
+
+
+// let valor:number = 60
+
+type Condicional = true | "É tudo falso";
+
 
 /*
  * union type alias: Permite que uma variável possa ser de mais de um tipo. 
@@ -110,14 +145,18 @@ const typeAlias = (value: Valor) => {
 /* 
  * Enums, ou enumerações, são como uma lista de opções fixas que você define no seu código.
  * Imagine que você tem que escolher entre várias cores, como "vermelho", "azul" e "verde".
+ * Ou escolher entre acessos ou dias da
  * Com Enums, você cria um conjunto com essas opções, e depois, no código, só pode escolher uma dessas cores.
  * Isso ajuda a evitar erros e torna o código mais fácil de entender. 
  * É como criar uma caixinha de escolhas pré-definidas para usar no seu programa.
  */
+
+//Opções acessos
+ 
 enum PerfilAcesso {
-  Admin = 'Administrador',
-  Usuario = 'Usuário Padrão',
-  Convidado = 'Convidado'
+  Admin,
+  Usuario,
+  Convidado
 }
 
 const userConv = {
@@ -125,18 +164,18 @@ const userConv = {
   name:"Marcos",
   idade: 30,
   email: "marcos@example.com",
-  perfil: 'Convidado',
+  perfil: 1,
 }
 
-function validarUser( perfil: string ) {
-  if (perfil === PerfilAcesso.Convidado) {
-    console.log('Usuário é um convidado.');
+function validarAcesso( perfil: PerfilAcesso ) {
+  if (perfil === PerfilAcesso.Admin) {
+    console.log('Acesso liberado!.');
   } else {
-    console.log('Usuário não é um convidado.');
+    console.log('Este usuário não tem permissão para esta ação.');
   }
 }
 
-validarUser(userConv.perfil)
+// validarAcesso(userConv.perfil)
 
 
 
@@ -150,25 +189,6 @@ const opticonalType = (userCad: {name:string, idade?:number}) => {
 }
 
 
-/*
- * Aqui temos um parâmetro opcional validado por narrowring
-*/
-const optionalType = (userCad: { name: string; idade?: number }) => {
-    const { name, idade } = userCad;
-  
-    if (idade && typeof idade === "number") {
-      console.log(`Olá ${name}, você tem ${idade} anos de idade`);
-    } else {
-      console.log(`Olá ${name}!`);
-    }
-    console.log(userCad.name);
-  };
-  
-  // Uso da função optionalType
-  optionalType({ name: "João", idade: 30 });
-  optionalType({ name: "Maria" });
-  
-
 
 
 
@@ -180,13 +200,41 @@ const optionalType = (userCad: { name: string; idade?: number }) => {
  * Aumentando a segurança e a precisão.
  **/
 
-function exemplo(valor: number | string) {
-    if (typeof valor === "string") {
-      console.log(valor.toUpperCase()); // Narrowing para string
-    } else {
-      console.log(valor.toFixed(2)); // Narrowing para number
-    }
-  } 
+function gerarNickName(nick: string | undefined): string {
+  // Narrowing: Verificando se 'nick' é uma string
+  if (typeof nick === 'string') {
+      // 'nick' é garantidamente uma string aqui
+      return nick;
+  } else {
+      // 'nick' é undefined aqui, então geramos um automaticamente
+      return `Usuario${Math.floor(Math.random() * 1000)}`;
+  }
+}
+
+// Exemplos de uso
+// console.log(gerarNickName("MeuNick"));  // Usa o nick fornecido: "MeuNick"
+// console.log(gerarNickName(undefined));  // Gera um nick automaticamente, ex: "Usuario123"
+
+
+/*
+ * Aqui temos um parâmetro opcional validado por narrowring
+*/
+const optionalType = (userCad: { name: string; idade?: number }) => {
+  const { name, idade } = userCad;
+
+  if (idade && typeof idade === "number") {
+    console.log(`Olá ${name}, você tem ${idade} anos de idade`);
+  } else {
+    console.log(`Olá ${name}!`);
+  }
+  console.log(userCad.name);
+};
+
+// Uso da função optionalType
+// optionalType({ name: "João", idade: 30 });
+// optionalType({ name: "Maria" });
+
+
 
 
 
@@ -200,14 +248,14 @@ function exemplo(valor: number | string) {
 
 // Uso simples do typeof com tipos primitivos.
 
-console.log(typeof "Hello, world!"); // "string"
-console.log(typeof 42);               // "number"
-console.log(typeof true);             // "boolean"
-console.log(typeof undefined);        // "undefined"
-console.log(typeof null);             // "object" (isso é considerado um comportamento histórico estranho em JavaScript)
-console.log(typeof {});               // "object"
-console.log(typeof []);               // "object"
-console.log(typeof function(){});     // "function"
+// console.log(typeof "Hello, world!"); // "string"
+// console.log(typeof 42);               // "number"
+// console.log(typeof true);             // "boolean"
+// console.log(typeof undefined);        // "undefined"
+// console.log(typeof null);             // "object" (isso é considerado um comportamento histórico estranho em JavaScript)
+// console.log(typeof {});               // "object"
+// console.log(typeof []);               // "object"
+// console.log(typeof function(){});     // "function"
 
 
 // Uso do instanceof validando acessos através de classes diferentes.
@@ -242,8 +290,8 @@ const validateAccess = (user: User) => {
     }
 };
 
-validateAccess(user); // Acesso restrito.
-validateAccess(admin); // Acesso total concedido.
+// validateAccess(user); // Acesso restrito.
+// validateAccess(admin); // Acesso total concedido.
 
 
 
@@ -260,4 +308,4 @@ validateAccess(admin); // Acesso total concedido.
 
 const tupla: [number, string, boolean] = [1, "texto", true];
 const arrayExpandido = [...tupla];
-console.log(arrayExpandido); // [1, "texto", true]
+// console.log(arrayExpandido); // [1, "texto", true]
